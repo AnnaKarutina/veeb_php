@@ -6,6 +6,7 @@ div {
 }
 .main{
     margin: auto;
+    border: none;
 }
 #punane {
     background: red;
