@@ -10,4 +10,8 @@ $perenimi = 'Karutina';
 $vanus = 38;
 $kaal = 53.4;
 
-//var_dump($eesnimi); // muutuja sisu test vaatamine
+echo 'Minu eesnimi on '.$eesnimi.'<br>';
+echo 'Minu perenimi on '.$perenimi.'<br>';
+echo 'Olen '.$vanus.' aastat vana<br>';
+echo 'Kaalun '.$kaal.' kg<br>';
+
