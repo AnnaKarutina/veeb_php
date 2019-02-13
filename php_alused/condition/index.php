@@ -1,3 +1,19 @@
+<style>
+    div {
+        margin: auto;
+        width: 100px;
+        height: 100px;
+        font-size: 70px;
+        padding-top: 15px;
+        text-align: center;
+    }
+    .paaris{
+        background: red;
+    }
+    .paaritu{
+        background: green;
+    }
+</style>
 <?php
 // genereerime juhuslik täisarv vahemikus 0 kuni 100
 $arv = rand(0, 100);
