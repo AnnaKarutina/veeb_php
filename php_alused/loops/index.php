@@ -1,5 +1,5 @@
 <?php
-header('Refresh: 2');
+header('Refresh: 1');
 ?>
 <style>
     div {
@@ -38,6 +38,10 @@ header('Refresh: 2');
     if ($arv == $jagaja) {
         echo '<div class="algarv">' . $arv . '</div>';
     } else {
-        echo '<div class="tavaline">' . $arv . '</div>';
+        if($arv % 2 == 0){
+            echo '<div class="paaris">' . $arv . '</div>';
+        } else {
+            echo '<div class="paaritu">' . $arv . '</div>';
+        }
     }
 
