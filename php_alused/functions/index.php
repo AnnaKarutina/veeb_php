@@ -16,7 +16,7 @@ function kasPaaris($arv){
 }
 
 function kirjeldus($paaris){
-    if($paaris == true){
+    if($paaris){
        echo ' on paaris';
     } else {
         echo ' on paaritu';
@@ -27,6 +27,5 @@ function kirjeldus($paaris){
 // kutsume funktsioon tööle
 for($arv = 0; $arv <= 10; $arv++){
     echo $arv;
-    $kontroll = kasPaaris($arv);
-    kirjeldus($kontroll);
+    kirjeldus(kasPaaris($arv));
 }
