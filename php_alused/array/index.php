@@ -33,9 +33,18 @@ function tabeliPais($andmed){
    echo '</thead>';
 }
 
-$tabeli_pealkiri = array_keys($raamatud[0]);
+function tabeliRida($raamat){
+    echo '<tr>';
+    foreach ($raamat as $elemendiNimetus => $elemendiVaartus){
+        echo '<td>'.$elemendiVaartus.'</td>';
+    }
+    echo '</tr>';
+}
+
+//$tabeli_pealkiri = array_keys($raamatud[0]);
 echo '<table border="1">';
-tabeliPais($tabeli_pealkiri);
+tabeliRida($raamatud[0]);
+tabeliRida($raamatud[1]);
 echo '</table>';
 
 
