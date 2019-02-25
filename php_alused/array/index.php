@@ -42,7 +42,7 @@ function tabeliRida($andmed){
 }
 
 function tabel($andmed){
-    echo '<table>';
+    echo '<table border="1">';
         tabeliPais(array_keys($andmed[0]));
         echo '<tbody>';
         foreach ($andmed as $element){
