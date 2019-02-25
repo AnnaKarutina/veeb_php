@@ -15,4 +15,10 @@ $george = array(
 echo $peppa['nimi'].' on '.$peppa['vanus'].' aastat vana<br>';
 echo $george['nimi'].' on '.$george['vanus'].' aastat vana<br>';
 
+$porsad = array();
+$porsad[] = $peppa;
+$porsad[] = $george;
+echo '<pre>';
+print_r($porsad);
+echo '</pre>';
 
