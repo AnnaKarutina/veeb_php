@@ -12,7 +12,7 @@ $raamatud = array(
         'autor' => 'eOne',
         'keel' => 'eesti',
         'lk' => 10,
-        'hind' => 5.85
+        'hind' => 25.85
     ),
     array(
         'nimi' => 'Jänku-Jass mängib peitust',
@@ -51,6 +51,18 @@ function tabel($andmed){
         echo '</tbody>';
     echo '</table>';
 }
+
+function vordleHinda($raamat1, $raamat2){
+    if($raamat1['hind'] == $raamat2['hind']){
+        return 0;
+    } else if($raamat1['hind'] < $raamat2['hind']){
+        return -1;
+    } else {
+        return 1;
+    }
+}
+
+usort($raamatud, 'vordleHinda');
 
 tabel($raamatud);
 
