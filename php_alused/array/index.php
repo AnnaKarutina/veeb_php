@@ -1,9 +1,26 @@
 <?php
-// Ülesanne massiivitöötlusest
-/*
-a)Loo massiiv raamatute admete hoidmiseks - inspireeri Apollo või rahvaraamatu poodidest :)
-b)Väljasta antud massiiv test kujul andmete kontrollimiseks
-c)Loo funktsioon, mis väljastab massiiv tabeli kujul, kus eraldi rida on ühe raamatud andmed
-NB! Mitte unustada tabeli päisest!
-d) Mõtle, mis moodi oleks võimalik sorteerida antud andmestik näiteks hinne järgi ja loo vastav funktsioon
-e) Mõtle, mis moodi oleks võimalik sorteerida antud andmestik näiteks kategooria järgi ja loo vastav funktsioon
+$raamatud = array(
+    array(
+        'nimi' => 'Enesehinnangu tööraamat teismelistele',
+        'autor' => 'Lisa M. Schab',
+        'keel' => 'eesti',
+        'lk' => 192,
+        'hind' => 15.75
+    ),
+    array(
+        'nimi' => 'Põrsas Peppa. Esimesed numbrid',
+        'autor' => 'eOne',
+        'keel' => 'eesti',
+        'lk' => 10,
+        'hind' => 5.85
+    ),
+    array(
+        'nimi' => 'Jänku-Jass mängib peitust',
+        'autor' => 'Julia Sigarova',
+        'keel' => 'eesti',
+        'lk' => 12,
+        'hind' => 10.15
+    )
+);
+
+
