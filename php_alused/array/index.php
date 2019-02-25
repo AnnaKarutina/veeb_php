@@ -23,4 +23,19 @@ $raamatud = array(
     )
 );
 
+function tabeliPais($andmed){
+   echo '<thead>';
+       echo '<tr>';
+       foreach ($andmed as $element){
+           echo '<th>'.$element.'</th>';
+       }
+       echo '</tr>';
+   echo '</thead>';
+}
+
+$tabeli_pealkiri = array_keys($raamatud[0]);
+echo '<table border="1">';
+tabeliPais($tabeli_pealkiri);
+echo '</table>';
+
 
