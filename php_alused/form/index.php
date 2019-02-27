@@ -53,8 +53,7 @@ function silindriRuumala($silindriRaadius, $silindriKorgus){
 function valjasta($ruumala){
     return round($ruumala, 2).' cm<sup>3</sup><br>';
 }
-// väljastame vorm
-echo vorm();
+
 // andmete kontroll ja töötlus
 if(count($_GET) != 0) {
     foreach ($_GET as $nimetus => $vaartus) {
@@ -67,5 +66,9 @@ if(count($_GET) != 0) {
     echo 'Kera ruumala on ' . valjasta(keraRuumala($_GET['keraRaadius']));
     echo 'Silindri ruumala on ' . valjasta(silindriRuumala($_GET['silindriRaadius'], $_GET['silindriKorgus']));
     echo 'Koonuse ruumala on ' . valjasta(koonuseRuumala($_GET['koonuseRaadius'], $_GET['koonuseKorgus']));
+    echo '<a href="'.$_SERVER['PHP_SELF'].'">Arvuta uuesti</a><br>';
+} else {
+    // väljastame vorm
+    echo vorm();
 }
 
