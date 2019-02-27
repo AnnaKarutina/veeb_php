@@ -33,21 +33,33 @@ function loeFailist($failiNimi){
     return $raamatud;
 }
 
-function tabelFailist($failiNimi){
-    if(failiKontroll($failiNimi)) {
-        $fp = fopen($failiNimi, 'r');
-        echo '<table border="1">';
-        echo '<tr>';
-        while (!feof($fp)) {
-            $rida = fgets($fp);
-            if(trim($rida) != ''){
-                echo '<td>'.$rida.'</td>';
-            } else {
-                echo '</tr>';
-            }
-        }
-        echo '</table>';
+function tabeliPais($andmed){
+    echo '<thead>';
+    echo '<tr>';
+    foreach ($andmed as $element){
+        echo '<th>'.$element.'</th>';
     }
+    echo '</tr>';
+    echo '</thead>';
 }
 
-tabelFailist('raamatud.txt');
+function tabeliRida($andmed){
+    echo '<tr>';
+    foreach ($andmed as $elemendiNimetus => $elemendiVaartus){
+        echo '<td>'.$elemendiVaartus.'</td>';
+    }
+    echo '</tr>';
+}
+
+function tabel($andmed){
+    echo '<table border="1">';
+    tabeliPais(array_keys($andmed[0]));
+    echo '<tbody>';
+    foreach ($andmed as $element){
+        tabeliRida($element);
+    }
+    echo '</tbody>';
+    echo '</table>';
+}
+
+tabel(loeFailist('raamatud.txt'));
