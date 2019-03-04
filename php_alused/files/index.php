@@ -29,6 +29,7 @@ function loeFailist($failiNimi){
                 $raamat = array();
             }
         }
+        fclose($fp);
     }
     return $raamatud;
 }
@@ -62,4 +63,47 @@ function tabel($andmed){
     echo '</table>';
 }
 
+function lisaAndmedVorm()
+{
+    echo '
+        <form action="'.$_SERVER['PHP_SELF'].'" method="get">
+            Nimetus <input type="text" placeholder="Raamatu nimetus" name="nimetus">
+            <br>
+            Autor <input type="text" placeholder="Raamatu autor" name="autor">
+            <br>
+            Keel <input type="text" placeholder="Raamatu keel" name="keel">
+            <br>
+            Lehekülgede arv <input type="text" placeholder="Raamatu lk arv" name="lk">
+            <br>
+            Hind <input type="text" placeholder="Raamatu hind" name="hind">
+            <br>
+            <input type="submit" value="Lisa raamat"> 
+        </form>
+    ';
+}
+
+function lisaAndmedFaili($failiNimi){
+    if(count($_GET) == 0){
+        lisaAndmedVorm();
+    } else {
+        foreach ($_GET as $nimetus=>$vaartus){
+            if(strlen($vaartus) == 0){
+                header('Location: '.$_SERVER['PHP_SELF']);
+                exit;
+            }
+        }
+        $fp = fopen($failiNimi, 'a');
+        foreach ($_GET as $nimetus => $vaartus) {
+            fwrite($fp, $vaartus."\n");
+        }
+        fwrite($fp, "\n");
+        fclose($fp);
+        header('Location: '.$_SERVER['PHP_SELF']);
+    }
+}
+lisaAndmedFaili('raamatud.txt');
+echo '<br>';
 tabel(loeFailist('raamatud.txt'));
+echo '<br>';
+
+
