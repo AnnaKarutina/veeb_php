@@ -1,74 +1,117 @@
 <?php
-// formi sisu
-function vorm(){
+$raamatud = array(
+    array(
+        'nimi' => 'Enesehinnangu tööraamat teismelistele',
+        'autor' => 'Lisa M. Schab',
+        'keel' => 'eesti',
+        'lk' => 192,
+        'hind' => 15.75
+    ),
+    array(
+        'nimi' => 'Põrsas Peppa. Esimesed numbrid',
+        'autor' => 'eOne',
+        'keel' => 'eesti',
+        'lk' => 10,
+        'hind' => 25.85
+    ),
+    array(
+        'nimi' => 'Jänku-Jass mängib peitust',
+        'autor' => 'Julia Sigarova',
+        'keel' => 'eesti',
+        'lk' => 12,
+        'hind' => 10.15
+    )
+);
+
+function tabeliPais($andmed){
+    echo '<thead>';
+    echo '<tr>';
+    foreach ($andmed as $element){
+        echo '<th>'.$element.'</th>';
+    }
+    echo '</tr>';
+    echo '</thead>';
+}
+
+function tabeliRida($andmed){
+    echo '<tr>';
+    foreach ($andmed as $elemendiNimetus => $elemendiVaartus){
+        echo '<td>'.$elemendiVaartus.'</td>';
+    }
+    echo '</tr>';
+}
+
+function tabel($andmed){
+    echo '<table border="1">';
+    tabeliPais(array_keys($andmed[0]));
+    echo '<tbody>';
+    foreach ($andmed as $element){
+        tabeliRida($element);
+    }
+    echo '</tbody>';
+    echo '</table>';
+}
+
+function odavamEtte($raamat1, $raamat2){
+    if($raamat1['hind'] == $raamat2['hind']){
+        return 0;
+    } else if($raamat1['hind'] < $raamat2['hind']){
+        return -1;
+    } else {
+        return 1;
+    }
+}
+
+function kallimEtte($raamat1, $raamat2){
+    if($raamat1['hind'] == $raamat2['hind']){
+        return 0;
+    } else if($raamat1['hind'] > $raamat2['hind']){
+        return -1;
+    } else {
+        return 1;
+    }
+}
+
+function lkJargi($raamat1, $raamat2){
+    if($raamat1['lk'] == $raamat2['lk']){
+        return 0;
+    } else if($raamat1['lk'] > $raamat2['lk']){
+        return -1;
+    } else {
+        return 1;
+    }
+}
+
+function filtreeriHinnaJargi($andmed, $algHind, $loppHind){
+    $filreerimiseTulemus = array();
+    foreach ($andmed as $element){
+        if($element['hind'] >= $algHind and $element['hind'] <= $loppHind){
+            $filreerimiseTulemus[] = $element;
+        }
+    }
+    return $filreerimiseTulemus;
+}
+
+
+
+function andmeteSorteerimiseValik(){
     return '
     <form method="get" action="'.$_SERVER['PHP_SELF'].'">
-                <h3>Kera</h3>
-                <div>
-                    <div>
-                        <label>Kera</label>
-                        <input type="text" placeholder="kera raadius" name="keraRaadius">
-                    </div>
-                </div>
-                <h3>Silinder</h3>
-                <div>
-                    <div>
-                        <label>Silinder</label>
-                        <input type="text" placeholder="silindri raadius" name="silindriRaadius">
-                    </div>
-                    <div>
-                        <label>Silinder</label>
-                        <input type="text" placeholder="silindri kõrgus" name="silindriKorgus">
-                    </div>
-                </div>
-                <h3>Koonus</h3>
-                <div>
-                    <div>
-                        <label>Koonus</label>
-                        <input type="text" placeholder="koonuse raadius" name="koonuseRaadius">
-                    </div>
-                    <div>
-                        <label>Silinder</label>
-                        <input type="text" placeholder="koonuse kõrgus" name="koonuseKorgus">
-                    </div>
-                </div>
-                <div>
-                    <button type="submit">Submit</button>
-                </div>
-            </form>
+        <select name="sorteerimisValik">
+            <option value="odavamEtte">odavam ette</option>    
+            <option value="kallimEtte">kallim ette</option>    
+            <option value="lkJargi">lehekülje arvu järgi</option>    
+        </select>
+        <input type="submit" value="Sorteeri">
+    </form>
     ';
 }
 
-// ruumalate arvutused
-function keraRuumala($keraRaadius){
-    return 4/3 * pi() * pow($keraRaadius, 3);
+if($_GET['sorteerimisValik'] != null){
+    usort($raamatud, $_GET['sorteerimisValik']);
 }
-function koonuseRuumala($koonuseRaadius, $koonuseKorgus){
-    return 1/3 * pi() * pow($koonuseRaadius, 2) * $koonuseKorgus;
-}
-function silindriRuumala($silindriRaadius, $silindriKorgus){
-    return pi() * pow($silindriRaadius, 2) * $silindriKorgus;
-}
-// andmete väljastamine
-function valjasta($ruumala){
-    return round($ruumala, 2).' cm<sup>3</sup><br>';
-}
-
-// andmete kontroll ja töötlus
-if(count($_GET) != 0) {
-    foreach ($_GET as $nimetus => $vaartus) {
-        if (strlen($_GET[$nimetus]) == 0) {
-            header('Location: ' . $_SERVER['PHP_SELF']);
-            exit;
-        }
-    }
-    // vormist andmed töötlus
-    echo 'Kera ruumala on ' . valjasta(keraRuumala($_GET['keraRaadius']));
-    echo 'Silindri ruumala on ' . valjasta(silindriRuumala($_GET['silindriRaadius'], $_GET['silindriKorgus']));
-    echo 'Koonuse ruumala on ' . valjasta(koonuseRuumala($_GET['koonuseRaadius'], $_GET['koonuseKorgus']));
-    echo '<a href="'.$_SERVER['PHP_SELF'].'">Arvuta uuesti</a><br>';
-} else {
-    // väljastame vorm
-    echo vorm();
-}
-
+//usort($raamatud, 'vordleHinda');
+//tabel(filtreeriHinnaJargi($raamatud, 0, 100));
+echo andmeteSorteerimiseValik();
+tabel($raamatud);
+?>
