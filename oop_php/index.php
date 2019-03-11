@@ -14,10 +14,17 @@ $main->set('js', $js->parse());
 
 // set up main page real values
 $main->set('lang', $http->get('lang_id'));
-$main->set('title', 'App Title');
+$main->set('title', 'App Example Title');
 
 // add action control
 // require_once 'controller.php';
+
+$mainContent = new Template('main_content');
+$mainContent->set('header', 'Page Header');
+$mainContent->set('nav', 'Page Navigation');
+$mainContent->set('content', 'Page Content');
+$mainContent->set('footer', 'Page Footer');
+$main->set('content', $mainContent->parse());
 
 // print out main page full view
 echo $main->parse();
