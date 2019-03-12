@@ -7,9 +7,13 @@ $link = $http->getLink(array('controller' => 'main'));
 $item->set('link', $link);
 $nav->add('items', $item->parse());
 
-
 $item->set('name', 'Contact');
 $link = $http->getLink(array('controller' => 'contact'));
+$item->set('link', $link);
+$nav->add('items', $item->parse());
+
+$item->set('name', 'Log In');
+$link = $http->getLink(array('controller' => 'login'));
 $item->set('link', $link);
 $nav->add('items', $item->parse());
 
