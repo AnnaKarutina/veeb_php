@@ -16,13 +16,13 @@ $main->set('js', $js->parse());
 $main->set('lang', $http->get('lang_id'));
 $main->set('title', 'App Example Title');
 
-// add action control
-// require_once 'controller.php';
 
 $mainContent = new Template('main_content');
 $mainContent->set('header', 'Page Header');
 require_once 'nav.php'; // nav element
-$mainContent->set('content', 'Page Content');
+// page content from controller
+// add action control
+require_once 'controller.php';
 $mainContent->set('footer', 'Page Footer');
 $main->set('content', $mainContent->parse());
 
