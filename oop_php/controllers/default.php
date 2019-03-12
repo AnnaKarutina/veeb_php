@@ -1,4 +1,5 @@
 <?php
 // default controller content
-$mainContent->set('content', 'Default Page Content');
+$mainContent->set('content', 'Tere tulemast, '.$sess->user_data['username']);
+
 

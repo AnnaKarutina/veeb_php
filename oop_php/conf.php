@@ -9,7 +9,7 @@ setlocale(LC_TIME, 'Estonia');
 error_reporting(E_ALL);
 
 // app constants
-define('SITENAME', 'Site real name');
+//define('SITENAME', 'Site real name');
 
 // model file system constants
 define('MODEL_DIR', BASE_DIR.'model/');
