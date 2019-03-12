@@ -21,7 +21,7 @@ $main->set('title', 'App Example Title');
 
 $mainContent = new Template('main_content');
 $mainContent->set('header', 'Page Header');
-$mainContent->set('nav', 'Page Navigation');
+require_once 'nav.php'; // nav element
 $mainContent->set('content', 'Page Content');
 $mainContent->set('footer', 'Page Footer');
 $main->set('content', $mainContent->parse());
