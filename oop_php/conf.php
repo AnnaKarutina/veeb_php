@@ -29,7 +29,7 @@ $siteRoles = array(
     ROLE_USER => 'Kasutaja'
 );
 
-define('DEFAULT_CONTROLLER', 'default');
+define('DEFAULT_CONTROLLER', 'menu');
 
 // import support functions
 require_once(LIB_DIR.'utils.php');
