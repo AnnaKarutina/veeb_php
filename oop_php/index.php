@@ -2,10 +2,10 @@
 require_once 'conf.php';
 
 // main page by html templates
-$main = new Template('main');
-$meta = new Template('meta');
-$style = new Template('style');
-$js = new Template('js');
+$main = new Template('app.main');
+$meta = new Template('app.meta');
+$style = new Template('app.style');
+$js = new Template('app.js');
 
 // add meta, style and js templates content to main template
 $main->set('meta', $meta->parse());
@@ -17,7 +17,7 @@ $main->set('lang', $http->get('lang_id'));
 $main->set('title', 'Söökla menüü');
 
 
-$mainContent = new Template('main_content');
+$mainContent = new Template('menu.main_content');
 
 
 

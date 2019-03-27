@@ -3,16 +3,16 @@
 $sql = 'SELECT * FROM dish_types';
 $dishTypes = $db->getData($sql);
 foreach ($dishTypes as $dishTypeData){
-    $dishType = new Template('type');
+    $dishType = new Template('menu.type');
 
-    $dishTypeName = new Template('type_name');
+    $dishTypeName = new Template('menu.type_name');
     $dishTypeName->set('type_name', $dishTypeData['type_name']);
     $dishTypeName->set('type_icon', $dishTypeData['type_icon']);
     $dishType->set('type_name', $dishTypeName->parse());
 
-    $dishData = new Template('type_data');
+    $dishData = new Template('menu.type_data');
     $dishData->set('type_name', $dishTypeData['type_name']);
-    $dish = new Template('dish');
+    $dish = new Template('menu.dish');
     $sql = 'SELECT * FROM dishes WHERE type_id='.fixDb($dishTypeData['type_id']);
     $dishes = $db->getData($sql);
 
