@@ -40,6 +40,7 @@ foreach ($dishTypes as $dishTypeData){
         $dish->set('dish_name', $dishContent['dish_name']);
         $dish->set('dish_description', $dishContent['dish_description']);
         $dish->set('dish_price', $dishContent['dish_price']);
+        $dish->set('discount', discount($dishContent['dish_price'], 15));
         $dishData->add('dishes', $dish->parse());
     }
     $dishType->set('type_data', $dishData->parse());
