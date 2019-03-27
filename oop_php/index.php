@@ -19,13 +19,25 @@ $main->set('title', 'Söökla menüü');
 
 $mainContent = new Template('menu.main_content');
 
+$nav = new Template('nav.nav');
+$sql = 'SELECT * FROM dish_availability';
+$dates = $db->getData($sql);
+foreach ($dates as $date){
+    $navItem = new Template('nav.item');
+    $link = $http->getLink(array('date' => $date['dish_date']));
+    $navItem->set('link', $link);
+    $navItem->set('date', $date['dish_date']);
+    $nav->add('nav_items', $navItem->parse());
+}
+$mainContent->set('nav', $nav->parse());
+
 
 
 // page content from controller
 // add action control
 require_once 'controller.php';
 
-require_once 'nav.php'; // nav element
+//require_once 'nav.php'; // nav element
 
 $mainContent->set('footer', 'Page Footer');
 $main->set('content', $mainContent->parse());
